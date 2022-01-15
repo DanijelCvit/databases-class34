@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
 connection.connect();
 
 const create_query = [
-  `DROP database meetup;`,
+  `DROP database IF EXISTS meetup;`,
   `CREATE database meetup;`,
   `USE meetup`,
   `CREATE TABLE Invitee (invitee_no int, invitee_name varchar(50), invited_by varchar(50));`,
