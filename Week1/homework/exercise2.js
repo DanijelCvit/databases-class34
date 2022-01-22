@@ -13,7 +13,7 @@ const queries = [
   `SELECT name FROM country WHERE population > 8000000;`,
   ` SELECT name FROM country WHERE name LIKE "%land%";`,
   `SELECT name FROM city WHERE population > 500000 AND population < 1000000;`,
-  `SELECT name FROM country  WHERE continent='europe';`,
+  `SELECT name FROM country  WHERE continent='Europe';`,
   `SELECT name  FROM country ORDER BY SurfaceArea DESC;`,
   `SELECT name FROM city WHERE CountryCode='NLD';`,
   `SELECT population FROM city WHERE name='Rotterdam';`,
