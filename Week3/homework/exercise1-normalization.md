@@ -16,6 +16,8 @@ Member, dinner, venue and food.
 
 Tables:
 
+<!-- See dinner_club.sql for table layout -->
+
 - Members: `id`, `name`, `address`.
 - Dinners: `id`, `date`, `venue_id`.
 - Orders: `id`, `member_id`, `dinner_id`, `food_id` (junction table for orders where member_id + dinner_id can server as an unique order id if only one order is permitted).
