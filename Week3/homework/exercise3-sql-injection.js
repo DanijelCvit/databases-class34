@@ -1,34 +1,28 @@
-/*  Below query will output population of all countries;
-SELECT  population FROM country WHERE name = ''*'' and code = ''*''; */
-
 const mysql = require("mysql");
-const connection = mysql.createConnection({
+const conn = mysql.createConnection({
   host: "localhost",
   user: "hyfuser",
   password: "hyfpassword",
   database: "world",
+  multipleStatements: true,
 });
 
-const getPopulation = (country, name, code, cb) => {
-  connection.query(
-    `SELECT  name, population FROM ${connection.escapeId(
-      country
-    )} WHERE name = ? and code = ?;`,
-    [name, code],
-    (err, result) => {
-      if (err) {
-        cb(err);
-      }
-      if (result?.length == 0) {
-        cb(new Error("Not found"));
-      }
-      cb(null, result);
-    }
-  );
-};
+function getPopulation(country, name, code, cb) {
+  // SQL query without escaping support
+  // const sql = `SELECT name,population FROM ${country} WHERE Name = '${name}' and code = '${code}'`;
 
-connection.connect();
+  const sql = `SELECT population FROM ?? WHERE Name = ? and code = ?`;
 
-getPopulation("country", "Netherlands", "NLD", console.log);
+  conn.query(sql, [country, name, code], function (err, result) {
+    if (err) cb(err);
+    if (result?.length == 0) cb(new Error("Not found"));
+    cb(null, result);
+  });
+}
 
-connection.end();
+conn.connect();
+
+// SQL injection query, shouldn't work anymore after escaping
+getPopulation("country", "' or ''='';select * from country#", "", console.log);
+
+conn.end();
