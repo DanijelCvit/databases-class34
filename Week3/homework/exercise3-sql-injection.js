@@ -25,4 +25,7 @@ conn.connect();
 // SQL injection query, shouldn't work anymore after escaping
 getPopulation("country", "' or ''='';select * from country#", "", console.log);
 
+// Should still work
+getPopulation("country", "Netherlands", "NLD", console.log);
+
 conn.end();
