@@ -10,11 +10,13 @@ connection.connect();
 
 const queries = [
   `SELECT A2.author_name AS Name, A1.author_name as Mentor  FROM authors AS A1 INNER JOIN authors AS A2 ON A1.author_no = A2.mentor;`,
-  `SELECT author_name, paper_title FROM authors
-LEFT JOIN
-authors_papers USING (author_no)
-LEFT JOIN
-research_Papers USING (paper_id);`,
+  `SELECT
+	author_no, author_name, university, date_of_birth, h_index, gender, mentor,
+	paper_title
+FROM
+	authors
+	LEFT JOIN authors_papers USING (author_no)
+	LEFT JOIN research_Papers USING (paper_id);`,
 ];
 
 for (const query of queries) {

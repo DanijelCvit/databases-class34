@@ -13,7 +13,7 @@ const queries = [
   LEFT JOIN authors_papers
   USING (paper_id)
   GROUP BY paper_title;`,
-  `SELECT COUNT(*) AS female_authors FROM research_Papers
+  `SELECT COUNT(1) AS female_authors FROM research_Papers
   INNER JOIN authors_papers
   USING (paper_id)
   INNER JOIN authors
